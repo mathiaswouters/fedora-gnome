@@ -1,0 +1,20 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = """
+[](#9A348E)\
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_status\
+$cmd_duration\
+$time\
+$line_break\
+$character"""
+
+add_newline = false
+
+[
+character
+]
+success_symbol = "[>{
