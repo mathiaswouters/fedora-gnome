@@ -1,5 +1,8 @@
 # Fedora Gnome
 
+## Inspiration
+[typecraft - crucible](https://github.com/typecraft-dev/crucible)
+
 ## Gnome Extensions
 - Just Perfection (@just-perfection)
 - Search Light (@icedman.github.com) OR Switcher (@dlandau)
