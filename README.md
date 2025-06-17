@@ -7,9 +7,12 @@
 - Tactile (@lundal.io)
 - TopHat (@fflewddur.github.io)
 - Alphabetical App Grid (@stuarthayhurst)
+- Blur my shell (@aunetx)
+
+
+
 - Tiling Assistant (@leleat-on-github)
 - Tiling Shell (@ferrarodomenico.com)
-- Blur my shell (@aunetx)  
 
 ## Packages
 
