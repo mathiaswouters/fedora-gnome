@@ -9,7 +9,6 @@
 - Space bar (@luchrioh)
 - Tactile (@lundal.io)
 - TopHat (@fflewddur.github.io)
-- Alphabetical App Grid (@stuarthayhurst)
 - Blur my shell (@aunetx)
 
 ## Packages
