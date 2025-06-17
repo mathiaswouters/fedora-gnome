@@ -9,11 +9,6 @@
 - Alphabetical App Grid (@stuarthayhurst)
 - Blur my shell (@aunetx)
 
-
-
-- Tiling Assistant (@leleat-on-github)
-- Tiling Shell (@ferrarodomenico.com)
-
 ## Packages
 
 See [packages.conf](config/packages.conf) file
