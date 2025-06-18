@@ -143,7 +143,11 @@ for service in "${SERVICES[@]}"; do
     echo "$service is already enabled"
   fi
 done
-  
+
+# Install NordVPN
+echo "Installing NordVPN..."
+sh <(wget -qO - https://downloads.nordcdn.com/apps/linux/install.sh) -p nordvpn-gui
+
 # Install gnome things
 echo "Installing Gnome extensions..."
 . scripts/gnome-extensions.sh
