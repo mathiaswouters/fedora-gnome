@@ -14,6 +14,8 @@ if [ ! -d "$DOTFILES_DIR" ]; then
   git clone $REPO_URL.git "$DOTFILES_DIR"
 fi
 
+sudo rm $HOME/.zshrc
+
 cd "$DOTFILES_DIR"
 
 stow zsh alacritty ghostty nvim tmux ohmyposh wallpapers
