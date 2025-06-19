@@ -194,13 +194,13 @@ for service in "${SERVICES[@]}"; do
   sudo systemctl enable "$service" || echo "Warning: Failed to enable $service"
 done
 
-#######################
-### Install NordVPN ###
-#######################
-echo "Installing NordVPN..."
-sh <(wget -qO - https://downloads.nordcdn.com/apps/linux/install.sh) -p nordvpn-gui
-sudo groupadd nordvpn
-sudo usermod -aG nordvpn $USER
+# #######################
+# ### Install NordVPN ###
+# #######################
+# echo "Installing NordVPN..."
+# sh <(wget -qO - https://downloads.nordcdn.com/apps/linux/install.sh) -p nordvpn-gui
+# sudo groupadd nordvpn
+# sudo usermod -aG nordvpn $USER
 
 ###########################
 ### GNOME Configuration ###
