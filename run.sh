@@ -22,13 +22,27 @@ BLOAT_FILE="$CONFIG_DIR/bloat-fedora-gnome"
 PACKAGE_CONF="$CONFIG_DIR/packages.conf"
 GNOME_SETTINGS="$CONFIG_DIR/gnome-settings.dconf"
 
-############################
-### Validate Environment ###
-############################
-if [[ "${XDG_CURRENT_DESKTOP:-}" != *"GNOME"* ]]; then
-  echo "This script is intended for GNOME environments only. Detected: ${XDG_CURRENT_DESKTOP:-<not set>}"
+#############################
+### Validate Linux Distro ###
+#############################
+if [ -f /etc/os-release ]; then
+  . /etc/os-release
+  if [[ "$ID" != "fedora" ]]; then
+    echo "This script is intended for Fedora systems only. Detected: $ID"
+    exit 1
+  fi
+else
+  echo "Cannot detect operating system. /etc/os-release not found."
   exit 1
 fi
+
+# ############################
+# ### Validate Environment ###
+# ############################
+# if [[ "${XDG_CURRENT_DESKTOP:-}" != *"GNOME"* ]]; then
+#   echo "This script is intended for GNOME environments only. Detected: ${XDG_CURRENT_DESKTOP:-<not set>}"
+#   exit 1
+# fi
 
 ###########################
 ### Source Package List ###
