@@ -20,3 +20,12 @@ See [packages.conf](config/packages.conf) file
 ## How to load Gnome Settings file:
 
 `dconf load /org/gnome/shell/extensions/ < config/gnome-settings.dconf`
+
+## Script Guide
+
+`sudo dnf install git -y`
+`git clone https://github.com/mathiaswouters/fedora-gnome`
+`cd fedora-gnome`
+`chmod +x run.sh`
+`chmod +x scripts/*.sh`
+`./run.sh`
