@@ -45,7 +45,7 @@ fi
 ###########################
 ### Source Package List ###
 ###########################
-if [ ! -f "packages.conf" ]; then
+if [ ! -f "$PACKAGE_CONF" ]; then
   echo "Error: packages.conf not found at $PACKAGE_CONF"
   exit 1
 fi
