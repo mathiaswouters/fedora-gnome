@@ -183,8 +183,8 @@ install_packages "${MEDIA[@]}"
 echo "Installing other packages..."
 install_packages "${OTHERS[@]}"
 
-echo "Installing fonts..."
-install_packages "${FONTS[@]}"
+# echo "Installing fonts..."
+# install_packages "${FONTS[@]}"
 
 #######################
 ### Enable services ###
