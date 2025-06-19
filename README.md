@@ -23,14 +23,14 @@ See [packages.conf](config/packages.conf) file
 
 ## Script Guide
 
-`sudo dnf install git -y`
+1) `sudo dnf install git -y`
 
-`git clone https://github.com/mathiaswouters/fedora-gnome`
+2) `git clone https://github.com/mathiaswouters/fedora-gnome`
 
-`cd fedora-gnome`
+3) `cd fedora-gnome`
 
-`chmod +x run.sh`
+4) `chmod +x run.sh`
 
-`chmod +x scripts/*.sh`
+5) `chmod +x scripts/*.sh`
 
-`./run.sh`
+6) `./run.sh`
