@@ -6,21 +6,19 @@ set -e
 ### Define Paths ###
 ####################
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-CONFIG_DIR="$SCRIPT_DIR/../../config"
+CONFIG_DIR="$SCRIPT_DIR/config"
 BLOAT_FILE="$CONFIG_DIR/bloat-fedora-gnome"
 PACKAGE_CONF="$CONFIG_DIR/packages.conf"
 GNOME_SETTINGS="$CONFIG_DIR/gnome-settings.dconf"
 
-#############################
-### Print Morpheus & Logo ###
-#############################
-source "$SCRIPT_DIR/scripts/morpheus.sh"
+##################
+### Print Logo ###
+##################
 source "$SCRIPT_DIR/scripts/logo.sh"
 
 clear
-print_morpheus
-echo
 print_logo
+echo
 
 #############################
 ### Validate Linux Distro ###
