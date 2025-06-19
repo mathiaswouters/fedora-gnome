@@ -3,6 +3,8 @@
 ## Inspiration
 [typecraft - crucible](https://github.com/typecraft-dev/crucible)
 
+## !!! ADD PART TO INSTALL GRAPHIC (NVIDIA) DRIVERS !!!
+
 ## Gnome Extensions
 - Just Perfection (@just-perfection)
 - Search Light (@icedman.github.com) OR Switcher (@dlandau)
