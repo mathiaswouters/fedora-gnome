@@ -90,6 +90,8 @@ sudo dnf update -y
 echo "Installing GNOME Desktop Environment..."
 sudo dnf group install workstation-product-environment -y
 
+sudo systemctl set-default graphical.target
+
 #############################
 ### Remove Bloat Packages ###
 #############################
