@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 print_logo() {
     cat << "EOF"
 
