@@ -202,11 +202,11 @@ done
 # sudo groupadd nordvpn
 # sudo usermod -aG nordvpn $USER
 
-###########################
-### GNOME Configuration ###
-###########################
-echo "Configuring GNOME..."
-source "$SCRIPT_DIR/scripts/gnome.sh"
+# ###########################
+# ### GNOME Configuration ###
+# ###########################
+# echo "Configuring GNOME..."
+# source "$SCRIPT_DIR/scripts/gnome.sh"
 
 ############################
 ### Install Flatpak Apps ###
