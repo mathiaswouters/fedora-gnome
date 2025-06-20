@@ -159,10 +159,19 @@ fi
 ##############################
 ### Package install helper ###
 ##############################
+# Wait until DNF lock is released
+wait_for_dnf_lock() {
+  while sudo fuser /var/lib/rpm/.rpm.lock >/dev/null 2>&1; do
+    echo "Waiting for DNF lock to be released..."
+    sleep 3
+  done
+}
+
 install_packages() {
   local pkgs=("$@")
   for pkg in "${pkgs[@]}"; do
     if ! rpm -q "$pkg" &>/dev/null; then
+      wait_for_dnf_lock
       echo "Installing $pkg..."
       sudo dnf install -y "$pkg"
     else
