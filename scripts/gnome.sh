@@ -7,6 +7,13 @@ set -e
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+# Make sure that pipx is installed
+if ! command -v pipx &>/dev/null; then
+  echo "Installing pipx..."
+  sudo dnf install -y pipx
+  pipx ensurepath
+fi
+
 # Install gnome-extensions-cli only if not already installed
 if ! command -v gext &> /dev/null; then
   pipx install gnome-extensions-cli --system-site-packages

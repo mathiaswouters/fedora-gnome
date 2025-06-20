@@ -2,6 +2,13 @@
 
 set -e
 
+###############################
+### TEMPORARY FOR DEBUGGING ###
+###############################
+
+trap 'echo "Script exited unexpectedly. Last command failed: $BASH_COMMAND"' ERR
+
+
 ####################
 ### Define Paths ###
 ####################
@@ -33,14 +40,6 @@ else
   echo "Cannot detect operating system. /etc/os-release not found."
   exit 1
 fi
-
-# ############################
-# ### Validate Environment ###
-# ############################
-# if [[ "${XDG_CURRENT_DESKTOP:-}" != *"GNOME"* ]]; then
-#   echo "This script is intended for GNOME environments only. Detected: ${XDG_CURRENT_DESKTOP:-<not set>}"
-#   exit 1
-# fi
 
 ###########################
 ### Source Package List ###
@@ -91,6 +90,14 @@ echo "Installing GNOME Desktop Environment..."
 sudo dnf group install workstation-product-environment -y
 
 sudo systemctl set-default graphical.target
+
+##############################
+### Install NVIDIA Drivers ###
+##############################
+echo "Installing NVIDIA Drivers..."
+
+sudo dnf install akmod-nvidia
+sudo dnf install xorg-x11-drv-nvidia-cuda
 
 #############################
 ### Remove Bloat Packages ###
@@ -196,13 +203,14 @@ for service in "${SERVICES[@]}"; do
   sudo systemctl enable "$service" || echo "Warning: Failed to enable $service"
 done
 
-# #######################
-# ### Install NordVPN ###
-# #######################
-# echo "Installing NordVPN..."
-# sh <(wget -qO - https://downloads.nordcdn.com/apps/linux/install.sh) -p nordvpn-gui
-# sudo groupadd nordvpn
-# sudo usermod -aG nordvpn $USER
+#######################
+### Install NordVPN ###
+#######################
+echo "Installing NordVPN..."
+sh <(wget -qO - https://downloads.nordcdn.com/apps/linux/install.sh) -y -p nordvpn-gui || echo "NordVPN install failed, continuing..."
+sudo groupadd -f nordvpn
+sudo usermod -aG nordvpn $USER
+
 
 # ###########################
 # ### GNOME Configuration ###
@@ -226,7 +234,10 @@ curl -s https://ohmyposh.dev/install.sh | bash -s
 ### Install Zinit ###
 #####################
 echo "Installing Zinit..."
-bash -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh)"
+bash -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh)" || {
+  echo "⚠️  Zinit installation failed or exited early. Continuing anyway..."
+}
+
 
 ######################
 ### Setup dotfiles ###
