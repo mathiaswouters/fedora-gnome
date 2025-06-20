@@ -91,6 +91,13 @@ sudo dnf group install workstation-product-environment -y
 
 sudo systemctl set-default graphical.target
 
+#########################
+### Enable RPM Fusion ###
+#########################
+echo "Enabling RPM Fusion..."
+sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
+  https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y
+
 ##############################
 ### Install NVIDIA Drivers ###
 ##############################
@@ -98,24 +105,6 @@ echo "Installing NVIDIA Drivers..."
 
 sudo dnf install akmod-nvidia
 sudo dnf install xorg-x11-drv-nvidia-cuda
-
-#############################
-### Remove Bloat Packages ###
-#############################
-echo "Removing bloat packages"
-BLOAT_PACKAGES=$(grep -vE '^\s*#|^\s*$' "$BLOAT_FILE")
-if [[ -n "$BLOAT_PACKAGES" ]]; then
-  for pkg in $BLOAT_PACKAGES; do
-    if rpm -q "$pkg" &>/dev/null; then
-      echo "Removing $pkg..."
-      sudo dnf remove -y "$pkg"
-    else
-      echo "Skipping $pkg (not installed)"
-    fi
-  done
-else
-  echo "Bloat package list not found at $BLOAT_FILE"
-fi
 
 ###############################################
 ### Setting up Repositories & Prerequisites ###
@@ -129,13 +118,6 @@ sudo dnf copr enable lihaohong/yazi -y
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
 echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\nautorefresh=1\ntype=rpm-md\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" | sudo tee /etc/yum.repos.d/vscode.repo >/dev/null
 dnf check-update || true
-
-#########################
-### Enable RPM Fusion ###
-#########################
-echo "Enabling RPM Fusion..."
-sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
-  https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y
 
 #################################
 ### Install Flatpak & Flathub ###
@@ -154,6 +136,24 @@ if ! flatpak remote-list | grep -q flathub; then
   sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 else
   echo "Flathub is already configured"
+fi
+
+#############################
+### Remove Bloat Packages ###
+#############################
+echo "Removing bloat packages"
+BLOAT_PACKAGES=$(grep -vE '^\s*#|^\s*$' "$BLOAT_FILE")
+if [[ -n "$BLOAT_PACKAGES" ]]; then
+  for pkg in $BLOAT_PACKAGES; do
+    if rpm -q "$pkg" &>/dev/null; then
+      echo "Removing $pkg..."
+      sudo dnf remove -y "$pkg"
+    else
+      echo "Skipping $pkg (not installed)"
+    fi
+  done
+else
+  echo "Bloat package list not found at $BLOAT_FILE"
 fi
 
 ##############################
