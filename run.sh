@@ -232,9 +232,14 @@ curl -s https://ohmyposh.dev/install.sh | bash -s
 #####################
 ### Install Zinit ###
 #####################
+# echo "Installing Zinit..."
+# bash -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh)" || {
+#   echo "Zinit installation failed or exited early. Continuing anyway..."
+# }
+
 echo "Installing Zinit..."
-bash -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh)" || {
-  echo "⚠️  Zinit installation failed or exited early. Continuing anyway..."
+curl -fsSL https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh | bash -s -- -y || {
+  echo "Zinit installation failed or exited early. Continuing anyway..."
 }
 
 
