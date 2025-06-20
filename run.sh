@@ -103,8 +103,8 @@ sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-rele
 ##############################
 echo "Installing NVIDIA Drivers..."
 
-sudo dnf install akmod-nvidia
-sudo dnf install xorg-x11-drv-nvidia-cuda
+sudo dnf install akmod-nvidia -y
+sudo dnf install xorg-x11-drv-nvidia-cuda -y
 
 ###############################################
 ### Setting up Repositories & Prerequisites ###
@@ -207,10 +207,9 @@ done
 ### Install NordVPN ###
 #######################
 echo "Installing NordVPN..."
-sh <(wget -qO - https://downloads.nordcdn.com/apps/linux/install.sh) -y -p nordvpn-gui || echo "NordVPN install failed, continuing..."
+wget -qO - https://downloads.nordcdn.com/apps/linux/install.sh | bash -s -- -y -p nordvpn-gui || echo "NordVPN install failed, continuing..."
 sudo groupadd -f nordvpn
 sudo usermod -aG nordvpn $USER
-
 
 # ###########################
 # ### GNOME Configuration ###
